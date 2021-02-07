@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class TestArbol {
     public static  void  main(String [] argumentos){
 
-        IArbolBusqueda<Integer,String> arbolDePrueba = new ArbolBinarioBusqueda<>();
+        IArbolBusqueda<Integer,String> arbolDePrueba = new ArbolMViasBusqueda<>();
 
 
         int opcion = 0;
@@ -20,18 +20,18 @@ public class TestArbol {
         Scanner teclado = new Scanner(System.in);
 
         System.out.println("ARBOLES DE BUSQUEDA");
-        System.out.println("1.  ARBOL BINARIO DE BUSQUEDA");
-        System.out.println("2.  AVL");
+        System.out.println("1.  ARBOL MVias DE BUSQUEDA");
+        System.out.println("2.  ARBOL B");
         System.out.println("Seleccione con que arbol desea trabajar");
         opcion = teclado.nextInt();
 
         switch (opcion) {
             case 1:
-                arbolDePrueba = new ArbolBinarioBusqueda<>();
+                arbolDePrueba = new ArbolMViasBusqueda<>();
                 break;
 
             case 2:
-                arbolDePrueba = new AVL<>();
+                arbolDePrueba = new ArbolB<>();
                 break;
         }
 
@@ -48,12 +48,11 @@ public class TestArbol {
             System.out.println("8.  NIVEL");
             System.out.println("9.  ALTURA");
             System.out.println("10.  VACIAR");
-            System.out.println("11.  CANTIDAD DE NODOS QUE TIENEN SOLO HIJO IZQUIERDO EN EL ARBOL  (Recursivo)");
-            System.out.println("12.  CANTIDAD DE NODOS QUE TIENEN SOLO HIJO IZQUIERDO EN EL ARBOL  (Iterativo)");
-            System.out.println("13.  CANTIDAD DE NODOS CON SOLO HIJO IZQUIERDO EN EL NIVEL N");
-            System.out.println("14. CANTIDAD DE NODOS CON SOLO HIJO IZQUIERDO DESPUES DEL NIVEL N");
-            System.out.println("15.  CANTIDAD DE NODOS CON SOLO HIJO IZQUIERDO ANTES  DEL NIVEL N");
-            System.out.println("16. CANTIDAD DE NODOS QUE TIENE AMBOS HIJOS DESDE EL NIVEL N");
+            System.out.println("11.  CANTIDAD DE DATOS  NO VACIOS EN EL ARBOL  (Recursivo)");
+            System.out.println("12.  CANTIDAD DE HOJAS DESPUES DEL NIVEL ");
+            System.out.println("13.  HAY HOJAS SOLO EN EL ULTIMO NIVEL");
+            System.out.println("14. ESTA BALANCEADO EL ARBOL");
+
 
             System.out.println("17. SALIR");
             opcion = teclado.nextInt();
@@ -103,44 +102,32 @@ public class TestArbol {
                     break;
 
                 case 11:
-                    System.out.println("la cantidad de nodos con solo hijo izquierdo en el arbol es: " +
-                            ((ArbolBinarioBusqueda)arbolDePrueba).cantidadDeNodosConHijoIzquierdo());
+                    System.out.println("digite el nivel en que desea buscar");
+                    nivel = teclado.nextInt();
+                    System.out.println("la cantidad de datos no vacios del nivel es: " +
+                            ((ArbolMViasBusqueda)arbolDePrueba).cantidadDeDatosNoVaciosEnNivel(nivel));
                     break;
 
                 case 12:
-                    System.out.println("la cantidad de nodos con solo hijo izquierdo en el arbol es: " +
-                            ((ArbolBinarioBusqueda)arbolDePrueba).cantidadDeNodosConSoloHijoIzq());
+                    System.out.println("digite el nivel en que desea buscar");
+                    nivel = teclado.nextInt();
+                    System.out.println("la cantidad de hojas despues del nivel es: " +
+                            ((ArbolMViasBusqueda)arbolDePrueba).cantidadDeHojasDespuesDelNivel(nivel));
                     break;
 
 
                 case 13:
-                    System.out.println("digite el nivel en que desea buscar");
-                    nivel = teclado.nextInt();
-                    System.out.println("la cantidad de nodos con solo hijo izquierdo en el " + nivel + " es " +
-                            ((ArbolBinarioBusqueda)arbolDePrueba).cantidadDeHijosIzquierdoEnNivel(nivel));
+
+                    System.out.println("hay hojas solo en el ultimo nive:  " + nivel + " es " +
+                            ((ArbolMViasBusqueda)arbolDePrueba).hayHojasSoloEnUltimoNivel());
                     break;
 
                 case 14:
-                    System.out.println("digite el nivel en que desea buscar");
-                    nivel = teclado.nextInt();
-                    System.out.println("la cantidad de nodos con solo hijo izquierdo despues del  " + nivel + " es " +
-                            ((ArbolBinarioBusqueda)arbolDePrueba).cantidadDeHijosIzqDespuesDelNivel(nivel));
+
+                    System.out.println("Esta balanceado:  " + nivel + " es " +
+                            ((ArbolMViasBusqueda)arbolDePrueba).estaBalanceado());
                     break;
 
-                case 15:
-                    System.out.println("digite el nivel en que desea buscar");
-                    nivel = teclado.nextInt();
-                    System.out.println("la cantidad de nodos con solo hijo izquierdo antes  del " + nivel + " es " +
-                            ((ArbolBinarioBusqueda)arbolDePrueba). cantidadDeHijosIzqAntesDelNivel(nivel));
-                    break;
-
-                case 16:
-
-                    System.out.println("digite el nivel");
-                    nivel = teclado.nextInt();
-                    System.out.println("la cantidad de nodos con dos hijos desde el nivel "+ nivel + " es " +
-                            ((ArbolBinarioBusqueda)arbolDePrueba).cantidadDeNodosConAmbosHijos(nivel));
-                    break;
 
             }
 
